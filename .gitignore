@@ -13,6 +13,7 @@ dist
 dist-ssr
 *.local
 killport.sh
+test.html
 
 # Editor directories and files
 .vscode/*

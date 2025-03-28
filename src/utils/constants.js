@@ -13,8 +13,10 @@ export const QUALITY_SETTINGS = {
   'image/gif': 1.0
 };
 
-export const MAX_FILE_SIZE = 100 * 1024 * 1024; // 100MB
+export const MAX_FILE_SIZE = 70 * 1024 * 1024; // 70MB file limit
 export const MAX_DIMENSION = 8000;
+export const CHUNK_SIZE = 2; // 2 files are enqueued at a time
+export const CHUNK_DELAY = 100; // Delay between chunks to let the UI update
 
 /**
  * Get default quality setting (for JPEG/WebP/etc.) based on target MIME type.

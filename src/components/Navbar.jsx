@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import AuthDialog from "./AuthDialog"; // adjust path as needed
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const location = useLocation(); // Get current page for active link highlighting
+  const [isAuthDialogOpen, setIsAuthDialogOpen] = useState(false);
+  const location = useLocation();
 
   // Close menu when clicking outside
   useEffect(() => {
     const closeMenu = (e) => {
-      if (isOpen && !e.target.closest("#mobile-menu") && !e.target.closest("#menu-button")) {
+      if (
+        isOpen &&
+        !e.target.closest("#mobile-menu") &&
+        !e.target.closest("#menu-button")
+      ) {
         setIsOpen(false);
       }
     };
@@ -16,17 +22,22 @@ function Navbar() {
     return () => document.removeEventListener("click", closeMenu);
   }, [isOpen]);
 
+  // Opens the authentication dialog.
+  const handleAuthClick = () => {
+    setIsAuthDialogOpen(true);
+  };
+
   return (
     <nav className="bg-white shadow-md fixed w-full z-50">
       <div className="max-w-screen-xl mx-auto px-6">
         <div className="flex justify-between items-center h-16">
-          {/* Logo on the left */}
-          <Link to="/" className="text-2xl font-bold text-blue-500">
+          {/* Logo */}
+          <Link to="/" className="text-4xl font-bold text-blue-500">
             FileConverter
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex flex-1 justify-center space-x-6">
+          <div className="hidden md:flex flex-1 text-xl justify-center space-x-6">
             {["Home", "Features", "Pricing", "About", "Help"].map((item) => {
               const path = item.toLowerCase();
               return (
@@ -34,7 +45,9 @@ function Navbar() {
                   key={item}
                   to={`/${path === "home" ? "" : path}`}
                   className={`text-gray-700 hover:text-blue-500 transition ${
-                    location.pathname === `/${path === "home" ? "" : path}` ? "border-b-2 border-blue-500" : ""
+                    location.pathname === `/${path === "home" ? "" : path}`
+                      ? "border-b-2 border-blue-500"
+                      : ""
                   }`}
                 >
                   {item}
@@ -43,9 +56,12 @@ function Navbar() {
             })}
           </div>
 
-          {/* Login/Signup button */}
+          {/* Desktop Login/Signup button */}
           <div className="hidden md:block">
-            <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-5 rounded-lg shadow transition">
+            <button
+              onClick={handleAuthClick}
+              className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-5 rounded-lg shadow transition"
+            >
               Login / Signup
             </button>
           </div>
@@ -64,9 +80,19 @@ function Navbar() {
               xmlns="http://www.w3.org/2000/svg"
             >
               {isOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
               ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
               )}
             </svg>
           </button>
@@ -94,11 +120,20 @@ function Navbar() {
               </Link>
             );
           })}
-          <button className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-5 rounded-lg mt-3 transition">
+          <button
+            onClick={handleAuthClick}
+            className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-5 rounded-lg mt-3 transition"
+          >
             Login / Signup
           </button>
         </div>
       </div>
+
+      {/* Authentication Dialog */}
+      <AuthDialog
+        isOpen={isAuthDialogOpen}
+        onClose={() => setIsAuthDialogOpen(false)}
+      />
     </nav>
   );
 }

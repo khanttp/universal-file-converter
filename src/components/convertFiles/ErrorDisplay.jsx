@@ -14,7 +14,7 @@ const ErrorDisplay = ({ errors }) => {
 
   return (
     <div className="mt-4 p-4 bg-red-100 text-red-900 rounded">
-      <p className="font-bold mb-2">Conversion failed for the following files:</p>
+      <p className="font-bold mb-2">Error:</p>
       <div className="ml-6">
         {errors.map((err, idx) => (
           <div key={idx}>{err}</div>

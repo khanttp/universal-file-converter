@@ -10,14 +10,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const FormatSelector = ({ selectedFormat, onChangeFormat, options }) => {
+const FormatSelector = ({ selectedFormat, onChangeFormat, options, disabled }) => {
   return (
     <div className="mt-4">
       <label className="block text-gray-700 mb-2">Convert to:</label>
       <select
-        className="w-full border border-gray-300 p-2 rounded mb-4"
+        className={`w-full border border-gray-300 p-2 rounded mb-4 ${disabled ? 'bg-gray-100 cursor-not-allowed' : ''
+          }`}
         value={selectedFormat}
         onChange={(e) => onChangeFormat(e.target.value)}
+        disabled={disabled}
       >
         <option value="">Select format</option>
         {options.map((format) => (
@@ -29,11 +31,11 @@ const FormatSelector = ({ selectedFormat, onChangeFormat, options }) => {
     </div>
   );
 };
-
 FormatSelector.propTypes = {
   selectedFormat: PropTypes.string.isRequired,
   onChangeFormat: PropTypes.func.isRequired,
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  disabled: PropTypes.bool,
 };
 
 export default FormatSelector;
