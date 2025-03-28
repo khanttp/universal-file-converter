@@ -7,6 +7,9 @@ function Navbar() {
   const [isAuthDialogOpen, setIsAuthDialogOpen] = useState(false);
   const location = useLocation();
 
+
+
+
   // Close menu when clicking outside
   useEffect(() => {
     const closeMenu = (e) => {
