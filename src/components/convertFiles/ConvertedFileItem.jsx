@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 const ConvertedFileItem = ({ file, onDownload, onDelete }) => {
   return (
-    <li className="flex items-center justify-between border p-2 mb-2">
+    <li className="flex items-center justify-between border border-gray-700 p-2 mb-2">
       <div>
-        <span>{file.fileName}</span>
+        <span className="text-white">{file.fileName}</span>
         {file.downloaded && <span className="ml-2 text-green-500">(Downloaded)</span>}
       </div>
       <div className="flex space-x-2">

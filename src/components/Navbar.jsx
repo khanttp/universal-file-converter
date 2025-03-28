@@ -7,9 +7,6 @@ function Navbar() {
   const [isAuthDialogOpen, setIsAuthDialogOpen] = useState(false);
   const location = useLocation();
 
-
-
-
   // Close menu when clicking outside
   useEffect(() => {
     const closeMenu = (e) => {
@@ -31,11 +28,11 @@ function Navbar() {
   };
 
   return (
-    <nav className="bg-white shadow-md fixed w-full z-50">
+    <nav className="bg-[#16191A] shadow-md fixed w-full z-50">
       <div className="max-w-screen-xl mx-auto px-6">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link to="/" className="text-4xl font-bold text-blue-500">
+          <Link to="/" className="text-4xl font-bold text-[#165DFB]">
             FileConverter
           </Link>
 
@@ -47,7 +44,7 @@ function Navbar() {
                 <Link
                   key={item}
                   to={`/${path === "home" ? "" : path}`}
-                  className={`text-gray-700 hover:text-blue-500 transition ${
+                  className={`text-white hover:text-blue-500 transition ${
                     location.pathname === `/${path === "home" ? "" : path}`
                       ? "border-b-2 border-blue-500"
                       : ""
@@ -63,7 +60,7 @@ function Navbar() {
           <div className="hidden md:block">
             <button
               onClick={handleAuthClick}
-              className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-5 rounded-lg shadow transition"
+              className="bg-[#165DFB] hover:bg-blue-600 text-white font-bold py-2 px-5 rounded-lg shadow transition"
             >
               Login / Signup
             </button>
@@ -73,7 +70,7 @@ function Navbar() {
           <button
             id="menu-button"
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-gray-700 focus:outline-none"
+            className="md:hidden text-gray-300 focus:outline-none"
           >
             <svg
               className="h-6 w-6"
@@ -105,7 +102,7 @@ function Navbar() {
       {/* Mobile Menu */}
       <div
         id="mobile-menu"
-        className={`absolute top-16 left-0 w-full bg-white shadow-lg rounded-b-xl transition-all duration-300 ease-in-out ${
+        className={`absolute top-16 left-0 w-full bg-[#16191A] shadow-lg rounded-b-xl transition-all duration-300 ease-in-out ${
           isOpen ? "opacity-100 max-h-96 py-4" : "opacity-0 max-h-0 overflow-hidden"
         }`}
       >
@@ -116,7 +113,7 @@ function Navbar() {
               <Link
                 key={item}
                 to={`/${path === "home" ? "" : path}`}
-                className="block text-gray-700 hover:text-blue-500 transition text-lg"
+                className="block text-gray-300 hover:text-blue-500 transition text-lg"
                 onClick={() => setIsOpen(false)}
               >
                 {item}

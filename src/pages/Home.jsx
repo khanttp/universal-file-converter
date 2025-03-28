@@ -18,7 +18,7 @@ const Home = () => {
           <h1 className="text-6xl font-bold mb-4">
             Convert Any File—Quickly &amp; Privately
           </h1>
-          <p className="text-2xl text-gray-600 mb-8">
+          <p className="text-2xl text-[#A8A197] mb-8">
             Secure, browser-based conversions without uploads or sign-ups.
           </p>
           <button

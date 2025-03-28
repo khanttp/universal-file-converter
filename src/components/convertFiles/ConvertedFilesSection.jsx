@@ -8,7 +8,6 @@
   Additionally, it includes a "Clear History" button that removes the conversion
   history from localForage and calls an optional callback to update the parent state.
 */}
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import localforage from 'localforage';
@@ -22,13 +21,13 @@ const ConvertedFilesSection = ({
   onDownloadAll,
   includeDownloaded,
   setIncludeDownloaded,
-  onClearHistory, // Callback prop for clearing history
+  onClearHistory,
 }) => {
   const handleClearHistory = async () => {
     try {
       await localforage.removeItem('convertedFiles');
       if (typeof onClearHistory === 'function') {
-        onClearHistory(); // Parent should clear history state (e.g. setConvertedFiles([]))
+        onClearHistory();
       }
     } catch (error) {
       console.error('Error clearing conversion history:', error);
@@ -37,10 +36,10 @@ const ConvertedFilesSection = ({
 
   return (
     <div className="mt-8">
-      <h3 className="text-2xl font-bold mb-4">Converted Files</h3>
+      <h3 className="text-2xl font-bold mb-4 text-white">Converted Files</h3>
       {recentFiles.length > 0 && (
         <div>
-          <h4 className="text-lg font-semibold mb-2">Recently Converted</h4>
+          <h4 className="text-lg font-semibold mb-2 text-white">Recently Converted</h4>
           <ul>
             {recentFiles.map((file) => (
               <ConvertedFileItem key={file.id} file={file} onDownload={onDownload} onDelete={onDelete} />
@@ -49,7 +48,7 @@ const ConvertedFilesSection = ({
           <div className="flex items-center justify-between mt-2">
             <button
               onClick={onDownloadAll}
-              className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+              className="bg-[#165DFB] hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
             >
               Download All {recentFiles.some(f => !f.downloaded) && !includeDownloaded && ' (New Files)'}
             </button>
@@ -61,7 +60,7 @@ const ConvertedFilesSection = ({
                 onChange={(e) => setIncludeDownloaded(e.target.checked)}
                 className="mr-2"
               />
-              <label htmlFor="includeDownloaded" className="text-gray-700">
+              <label htmlFor="includeDownloaded" className="text-[#938E86]">
                 Include Previously Downloaded
               </label>
             </div>
@@ -70,7 +69,7 @@ const ConvertedFilesSection = ({
       )}
       <div className="mt-4">
         <details>
-          <summary className="text-lg font-semibold cursor-pointer mb-2">Conversion History</summary>
+          <summary className="text-lg font-semibold cursor-pointer mb-2 text-white">Conversion History</summary>
           {historyFiles.length > 0 ? (
             <ul>
               {historyFiles.map((file) => (
@@ -78,7 +77,7 @@ const ConvertedFilesSection = ({
               ))}
             </ul>
           ) : (
-            <p className="text-gray-600">No history available.</p>
+            <p className="text-[#938E86]">No history available.</p>
           )}
           {historyFiles.length > 0 && (
             <div className="mt-4 text-center">
@@ -92,7 +91,6 @@ const ConvertedFilesSection = ({
           )}
         </details>
       </div>
-
     </div>
   );
 };
@@ -105,7 +103,7 @@ ConvertedFilesSection.propTypes = {
   onDownloadAll: PropTypes.func.isRequired,
   includeDownloaded: PropTypes.bool.isRequired,
   setIncludeDownloaded: PropTypes.func.isRequired,
-  onClearHistory: PropTypes.func, // Optional callback for clearing history in parent state
+  onClearHistory: PropTypes.func,
 };
 
 export default ConvertedFilesSection;

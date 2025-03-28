@@ -304,7 +304,7 @@ const FileConverter = forwardRef((props, ref) => {
   }, [selectedFiles, targetFormat, createDownloadLink, progressHandler]);
 
   return (
-    <div className="w-4/5 mx-auto p-6 bg-white shadow rounded">
+    <div className="w-4/5 mx-auto p-6 bg-[#16191A] shadow rounded">
       {/* Hidden file input */}
       <input type="file" multiple className="hidden" ref={fileInputRef} onChange={handleFileSelect} />
 
@@ -336,7 +336,7 @@ const FileConverter = forwardRef((props, ref) => {
 
           <button
             className={`w-full py-2 px-4 rounded ${targetFormat && selectedFiles.length <= FILE_UPLOAD_LIMIT
-              ? 'bg-blue-500 hover:bg-blue-600 text-white'
+              ? 'bg-[#165DFB] hover:bg-blue-600 text-white'
               : 'bg-gray-300 text-gray-700 cursor-not-allowed'
               }`}
             onClick={handleConversion}
